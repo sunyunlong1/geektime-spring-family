@@ -22,6 +22,7 @@ public class BatchFooDao {
     public void batchInsert() {
         jdbcTemplate.batchUpdate("INSERT INTO FOO (BAR) VALUES (?)",
                 new BatchPreparedStatementSetter() {
+                    //此处在jdbcTemplate中，有一个以BatchSize大小的for循环，此处是2所以输出b-0，b-1
                     @Override
                     public void setValues(PreparedStatement ps, int i) throws SQLException {
                         ps.setString(1, "b-" + i);
